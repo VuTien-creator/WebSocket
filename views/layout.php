@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php include 'views/widgets/header.php' ?>
 </head>
-<body>
-    
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <?php
+                include $view;
+                ?>
+            </div>
+            <!-- /page content -->
+            <?php include 'views/widgets/footer.php' ?>
+        </div>
+    </div>
+
+    <?php
+    //  include 'views/widgets/script.php' 
+    ?>
 </body>
+
 </html>

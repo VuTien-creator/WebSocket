@@ -1,4 +1,5 @@
 <?php
+
 function dd($value){
     echo '<pre>'.print_r($value).'</pre>';
 }
@@ -21,4 +22,13 @@ function href($controller, $action = 'index',$params =[]){
 
 function now(){
     return date('Y-m-d H:i:s');
+}
+
+/**
+ * check user login
+ */
+function isLogin(){
+
+    return isset($_SESSION['statusLogin']) && $_SESSION['statusLogin'];
+
 }

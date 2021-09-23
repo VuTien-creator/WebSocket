@@ -7,4 +7,7 @@ class Controller
         include 'view/'.$layout.'.php';
     }
     
+    function _404(){
+        $this->render('views/404.php');
+    }
 }
