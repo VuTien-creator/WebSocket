@@ -1,7 +1,8 @@
 <?php
 
 function dd($value){
-    echo '<pre>'.print_r($value).'</pre>';
+    print_r($value);
+    
 }
 
 function redirect($url){
