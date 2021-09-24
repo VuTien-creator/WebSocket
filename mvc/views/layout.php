@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <?php include 'views/widgets/header.php' ?>
+    <?php include 'widgets/header.php' ?>
 </head>
 
 <body class="nav-md">
@@ -15,7 +15,7 @@
                 ?>
             </div>
             <!-- /page content -->
-            <?php include 'views/widgets/footer.php' ?>
+            <?php include 'widgets/footer.php' ?>
         </div>
     </div>
 
