@@ -30,6 +30,7 @@ class Model{
      * return 1 object
      */
     function loadRow($params = []){
+        // echo $this->sql;
         try {
 
             $this->statement = $this->pdo->prepare($this->sql);
@@ -38,7 +39,7 @@ class Model{
             return $this->statement->fetch(PDO::FETCH_OBJ);
 
         } catch (PDOException $e) {
-            exit($e->getMessage());
+            exit($e->getFile());
         }
     }
 
@@ -71,6 +72,7 @@ class Model{
 
         } catch (PDOException $e) {
             exit($e->getMessage());
+            
         }
     }
 

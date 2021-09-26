@@ -2,13 +2,23 @@
 <html lang="en">
 
 <head>
-    <?php include 'view/widgets/head.php' ?>
+    <?php include './mvc/views/widgets/header.php' ?>
 </head>
 
-<body class="login">
-    <?php
-    include $view;
-    ?>
+<body class>
+
+    <div class="containter">
+        <br />
+        <br />
+        <h1 class="text-center">Chat Realtime</h1>
+
+        <?php
+        // require_once './mvc/views/DetailLayout/' . $data['page'] . '.php';
+        require_once './mvc/views/DetailLayout/'.$data['page'].'.php';
+
+        ?>
+
+    </div>
 </body>
 
 </html>

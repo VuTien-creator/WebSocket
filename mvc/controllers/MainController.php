@@ -4,25 +4,19 @@ class MainController extends Controller
 {
     public function index()
     {
-        echo 'test';
+        //return page  login
+        $this->view('empty',[
+            'page'=>'login'
+        ]);
     }
 
-    public function show()
+
+    public function home()
     {
-        echo 'show';
+        echo 'home';
     }
 
     
 
-    public function Tong($a, $b)
-    {
-        $model = $this->model('sinhVien');
-        $number = $model->Tong($a, $b);
-        
-        $this->view('layout', [
-            'number' => $number,
-            'page'=>'login'
-        ]);
-        // var_dump( $a);
-    }
+    
 }
