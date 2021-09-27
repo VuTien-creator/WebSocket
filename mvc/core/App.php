@@ -41,7 +41,16 @@ class App
         // $action = $this->action;
         // $this->controller->$action($this->params);
         // echo $this->action;
+        // var_dump($this->params);
+        try {
+
+            //code...
         call_user_func_array([$this->controller,$this->action], $this->params);
+
+        } catch (Exception $e) {
+            //throw $th;
+            exit($e->getMessage());
+        }
 
     }
 

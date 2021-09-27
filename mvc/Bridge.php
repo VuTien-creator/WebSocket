@@ -1,4 +1,6 @@
 <?php
+
+
 include './mvc/core/system/config/config.php';
 include './mvc/core/system/libs/functions.php';
 

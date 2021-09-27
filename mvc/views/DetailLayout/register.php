@@ -18,7 +18,7 @@ if (!empty($data['error'])) {
             <div class="card-header">Register</div>
             <div class="card-body">
 
-                <form method="post" action="register" id="register_form">
+                <form method="post" action="<?php echo BASEURL;?>user/register" id="register_form">
 
                     <div class="form-group">
                         <label>Enter Your Name</label>

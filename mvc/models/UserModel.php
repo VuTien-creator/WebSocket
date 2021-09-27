@@ -10,6 +10,7 @@ class UserModel extends Model
     private $created_on;
     private $verification_code;
     private $login_status;
+    private $user_token;
     // private $token;
     // private $connection_id;
 
@@ -17,7 +18,7 @@ class UserModel extends Model
     {
         $this->id = $id;
     }
-    function getUserID($id)
+    function getUserID()
     {
         return $this->id;
     }
@@ -123,12 +124,44 @@ class UserModel extends Model
         imagettftext($image, 100, 0, 55, 150, $textcolor, $font, $character); //write text to image
         imagepng($image, $path);
         imagedestroy($image);
+
         return $path;
     }
 
-    function getUserDataByEmail($email)
+    function getUserDataByEmail()
     {
-        return $this->setQuery('SELECT id FROM `websocket`.`users` WHERE email=?')->loadRow([$email]);
+        try {
+            //code...
+            return $this->setQuery('SELECT * FROM `websocket`.`users` WHERE email=?')->loadRow([$this->getUserEmail()]);
+        } catch (Exception $e) {
+            //throw $th;
+            exit($e->getMessage());
+        }
+    }
+
+    function getUserDataByVerifyCode()
+    {
+        try {
+            //code...
+            return $this->setQuery('SELECT id FROM `websocket`.`users` where verification_code =?')
+                ->loadRow([$this->getUserVerification()]);
+        } catch (Exception $e) {
+            //throw $th;
+            exit($e->getMessage());
+        }
+    }
+
+    function enableUserByVerifyCode()
+    {
+        try {
+            //code...
+            $this->setQuery("UPDATE `websocket`.`users` SET status='Enable' WHERE verification_code=?")
+                ->save([$this->getUserVerification()]);
+            return true;
+        } catch (Exception $e) {
+            //throw $th;
+            exit($e->getMessage());
+        }
     }
 
     function createNewUser()
@@ -139,9 +172,9 @@ class UserModel extends Model
         )
         VALUES (?,?,?,?,?,?,?)';
 
-
-        
-        return $this->setQuery($query)->save([
+        try {
+            //code...
+            $this->setQuery($query)->save([
                 $this->name,
                 $this->email,
                 $this->password,
@@ -150,6 +183,26 @@ class UserModel extends Model
                 $this->created_on,
                 $this->verification_code,
             ]);
-        
+            return true;
+        } catch (Exception $e) {
+            exit($e->getMessage());
+        }
+    }
+    function setUserToken($token)
+    {
+        $this->user_token = $token;
+    }
+
+    function updateUserLoginData()
+    {
+        $query ="UPDATE `websocket`.`users` SET login_status=? WHERE id=?";
+        try {
+            //code...
+            $this->setQuery($query)->save([$this->getUserLoginStatus(), $this->getUserID()]);
+            return true;
+        } catch (Exception $e) {
+            //throw $th;
+            exit($e->getMessage());
+        }
     }
 }
