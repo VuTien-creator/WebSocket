@@ -12,12 +12,15 @@ class UserController extends Controller
 
     function __construct()
     {
-        // if (isset($_SESSION['data_user'])) {
-        //     header('location:http://localhost/do_an/WebSocket/main/home');
-        // }
+        
+        if(isset($_SESSION['user_data'])){
+            redirect(BASEURL.'chat/index');
+        }
     }
+    
     public function index()
     {
+        
         //return page  register
         $this->view('empty', [
             'page' => 'register'
@@ -186,7 +189,7 @@ class UserController extends Controller
                             // 'token' =>  $userEmail->
                         ];
                     }
-                    redirect(BASEURL . 'main/home');
+                    redirect(BASEURL . 'chat/index');
                     return true;
                 }
                 $_SESSION['error'] = 'Wrong Email';

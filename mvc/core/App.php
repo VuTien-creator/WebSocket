@@ -24,9 +24,11 @@ class App
             $this->controller = new $this->controller; // create new object
             if (isset($arr[1])) {
                 //check action in controller
+
                 if (method_exists($this->controller, $arr[1])) {
                     $this->action = $arr[1];
                 }
+                // var_dump($arr[1]);
                 unset($arr[1]);
             }
             $this->params = $arr ? array_values($arr) : [];
@@ -35,23 +37,16 @@ class App
             require_once './mvc/controllers/' . $this->controller . '.php';
             $this->controller = new $this->controller; // create new object
         }
-        // echo $this->action;
-
         
-        // $action = $this->action;
-        // $this->controller->$action($this->params);
-        // echo $this->action;
-        // var_dump($this->params);
         try {
 
             //code...
-        call_user_func_array([$this->controller,$this->action], $this->params);
-
+            // echo $this->action;
+            call_user_func_array([$this->controller, $this->action], $this->params);
         } catch (Exception $e) {
             //throw $th;
             exit($e->getMessage());
         }
-
     }
 
 

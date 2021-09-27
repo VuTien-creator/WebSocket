@@ -2,6 +2,13 @@
 
 class MainController extends Controller
 {
+    
+    function __construct()
+    {
+        if(isset($_SESSION['user_data'])){
+            redirect(BASEURL.'chat/index');
+        }
+    }
     public function index()
     {
         //return page  login
@@ -10,13 +17,6 @@ class MainController extends Controller
         ]);
     }
 
-
-    public function home()
-    {
-        echo 'home';
-    }
-
-    
 
     
 }

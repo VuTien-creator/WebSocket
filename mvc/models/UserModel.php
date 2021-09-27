@@ -106,7 +106,7 @@ class UserModel extends Model
 
     function make_avatar($character)
     {
-        $path = "./public/images/" . time() . ".png"; //create path to images (unique)
+        $path = "public/images/" . time() . ".png"; //create path to images (unique)
         $image = imagecreate(200, 200); //create image: width and height = 200
 
         //random color (RGB)
@@ -199,6 +199,49 @@ class UserModel extends Model
         try {
             //code...
             $this->setQuery($query)->save([$this->getUserLoginStatus(), $this->getUserID()]);
+            return true;
+        } catch (Exception $e) {
+            //throw $th;
+            exit($e->getMessage());
+        }
+    }
+    function getUserDataById() {
+        $query = 'SELECT * FROM `websocket`.`users` where id =?';
+
+        try {
+            //code...
+            return $this->setQuery($query)->loadRow([$this->getUserID()]);
+        } catch (Exception $e) {
+            //throw $th;
+            exit($e->getMessage());
+        }
+    }
+
+    function upload_image($fileName){
+        try {
+            //code...
+            $extension = explode('.', $fileName['name']);
+            $new_name = rand() . '.' . $extension[1];
+            $destination = 'public/images/' . $new_name;
+            move_uploaded_file($fileName['tmp_name'], $destination);
+
+            return $destination;
+        } catch (Exception $e) {
+            //throw $th;
+            exit($e->getMessage());
+        }
+    }
+
+    function updateProfile(){
+        // $query ="UPDATE `websocket`.`users` SET name=?, password=? , profile=? WHERE id=?";
+        $query ="UPDATE `websocket`.`users` SET name=?, password=? , profile=? WHERE id=?";
+
+
+        try {
+            // $this->statement = $this->pdo->prepare($query);
+            // return $this->statement->execute();
+            $this->setQuery($query)
+            ->save([$this->getUserName(),$this->getPassword(),$this->getProfile(), $this->getUserID()]);
             return true;
         } catch (Exception $e) {
             //throw $th;

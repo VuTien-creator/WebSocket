@@ -18,13 +18,7 @@
                         ';
             unset($_SESSION['error']);
         }
-        // if (!empty($data['msg'])) {
-        //     echo '
-        //                     <div class="alert alert-success">
-        //                     ' . $data['msg']. '
-        //                     </div>
-        //                     ';
-        // }
+        
         ?>
 
         <div class="card">
