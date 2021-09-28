@@ -6,23 +6,23 @@
 
         <div class="col-lg-8">
             <?php
-                if (isset($_SESSION['msg'])) {
-                    echo '
+            if (isset($_SESSION['msg'])) {
+                echo '
                                 <div class="alert alert-success">
                                 ' . $_SESSION["msg"] . '
                                 </div>
                                 ';
-                    unset($_SESSION['msg']);
-                }
+                unset($_SESSION['msg']);
+            }
 
-                if (isset($_SESSION['error'])) {
-                    echo '
+            if (isset($_SESSION['error'])) {
+                echo '
                                 <div class="alert alert-danger">
                                 ' . $_SESSION['error'] . '
                                 </div>
                                 ';
-                    unset($_SESSION['error']);
-                }
+                unset($_SESSION['error']);
+            }
 
             ?>
             <div class="card">
@@ -78,23 +78,13 @@
             </form>
         </div>
         <div class="col-lg-4">
-            <?php
-
-            // $login_user_id = '';
-
-            foreach ($_SESSION['user_data'] as $key => $value) {
-            ?>
-                <input type="hidden" name="login_user_id" id="login_user_id" value="" />
-                <div class="mt-3 mb-3 text-center">
-                    <img src="<?php echo BASEURL . $value['profile'] ?>" width="150" class="img-fluid rounded-circle img-thumbnail" />
-                    <h3 class="mt-2"><?php echo $value['name'] ?></h3>
-                    <a href="<?php echo BASEURL ?>chat/edit/<?php echo $value['id'] ?>" class="btn btn-secondary mt-2 mb-2">Edit</a>
-                    <input type="button" class="btn btn-primary mt-2 mb-2" name="logout" id="logout" value="Logout" />
-                </div>
-            <?php
-            }
-            ?>
-
+            <input type="hidden" name="login_user_id" id="login_user_id" value="" />
+            <div class="mt-3 mb-3 text-center">
+                <img src="<?php echo BASEURL . $data['user']['profile'] ?>" width="150" class="img-fluid rounded-circle img-thumbnail" />
+                <h3 class="mt-2"><?php echo $data['user']['name'] ?></h3>
+                <a href="<?php echo BASEURL ?>chat/edit/<?php echo $data['user']['id'] ?>" class="btn btn-secondary mt-2 mb-2">Edit</a>
+                <input type="button" class="btn btn-primary mt-2 mb-2" name="logout" id="logout" value="Logout" />
+            </div>
             <div class="card mt-3">
                 <div class="card-header">User List</div>
                 <div class="card-body" id="user_list">

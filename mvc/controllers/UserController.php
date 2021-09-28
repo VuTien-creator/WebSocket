@@ -189,7 +189,7 @@ class UserController extends Controller
                             // 'token' =>  $userEmail->
                         ];
                     }
-                    redirect(BASEURL . 'chat/index');
+                    redirect(BASEURL . 'chat/index/'.$userEmail->id);
                     return true;
                 }
                 $_SESSION['error'] = 'Wrong Email';

@@ -1,19 +1,28 @@
 <?php
 class ChatController extends Controller
 {
+    private $idUser;
     function __construct()
     {
+        
         if (!isset($_SESSION['user_data'])) {
             header('location:http://localhost/do_an/WebSocket/main/home');
             exit;
         }
     }
 
-    function index()
+    function index($id)
     {
+        // $this->idUser = $id;
+        // if ($id != $this->idUser) {
+        //     header('location:http://localhost/do_an/WebSocket/chat/index');
+        //     exit;
+        // }
         // session_destroy();
+        // exit;
         $this->view('mainLayout', [
-            'page' => 'ChatRoom'
+            'page' => 'ChatRoom',
+            'user' => $_SESSION['user_data'][$id]
         ]);
     }
 
@@ -57,9 +66,10 @@ class ChatController extends Controller
             redirect(BASEURL . 'chat/index');
         }
         $this->model('UserModel');
-        $user = new UserModel;
 
+        $user = new UserModel;
         $this->checkValidUser($_POST['id_user']);
+
 
         $user->setUserID($_POST['id_user']);
 
