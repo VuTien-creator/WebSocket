@@ -119,36 +119,6 @@
         </div>
     </div>
 </div>
-<script>
-$(document).ready(function () {
+<script src="<?php echo BASEURL ?>public/js/logout.js"></script>
+<script src="<?php echo BASEURL ?>public/js/connect.js"></script>
 
-    $('#logout').click(function() {
-        //get id user want to logout
-        var user_id = $('#login_user_id').val();
-
-        $.ajax({
-
-            url: "http://localhost/do_an/WebSocket/chat/logout",
-            method: "POST",
-            data: {
-                // user_id: user_id,
-                user_id: $('#login_user_id').val(),
-
-                action: 'logout'
-            },
-
-            success: function(data) {
-
-                // return console.log(44);
-
-                // if (response.status == 1) {
-                // conn.close();
-                window.location.href = 'http://localhost/do_an/WebSocket/';
-                // }
-            }
-        })
-
-    });
-});
-
-</script>
