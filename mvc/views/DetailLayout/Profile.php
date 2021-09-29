@@ -12,11 +12,11 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-6">Profile</div>
-                <div class="col-md-6 text-right"><a href="<?php echo BASEURL?>chat/index/<?php echo $data['user']->id?>" class="btn btn-warning btn-sm">Go to Chat</a></div>
+                <div class="col-md-6 text-right"><a href="<?php echo BASEURL?>chat/index" class="btn btn-warning btn-sm">Go to Chat</a></div>
             </div>
         </div>
         <div class="card-body">
-            <form method="post" action="<?php echo BASEURL?>Chat/updateInfo/<?php echo $data['user']->id?>" id="profile_form" enctype="multipart/form-data">
+            <form method="post" action="<?php echo BASEURL?>Chat/updateInfo" id="profile_form" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Name</label>
                     <input type="text" name="user_name" id="user_name" value="<?php echo $data['user']->name; ?>"

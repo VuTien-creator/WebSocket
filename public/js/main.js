@@ -5,15 +5,15 @@ $(document).ready(function () {
 
 });
 
-// $(document).ready(function(){
-//     $("#user_email").keyup(function(){
-//         var check = $(this).val();
-//             // $('#message').html(check);
-//         $.post('checkEmailRegisterAjax'),{email:check}, function(data){
-//             $('#message').html(data);
-//         };
-//     });
-// });
+$(document).ready(function () {
+    $("#user_email").keyup(function () {
+        var check = $(this).val();
+        // $('#message').html(check);
+        $.post('user/checkEmailRegisterAjax'), { email: check }, function (data) {
+            $('#message').html(data);
+        };
+    });
+});
 
 $(document).ready(function () {
 
@@ -73,28 +73,7 @@ $(document).ready(function () {
 
     });
 
-    $('#logout').click(function () {
 
-        user_id = $('#login_user_id').val();
-
-        $.ajax({
-            url: "action.php",
-            method: "POST",
-            data: {
-                user_id: user_id,
-                action: 'leave'
-            },
-            success: function (data) {
-                var response = JSON.parse(data);
-
-                if (response.status == 1) {
-                    conn.close();
-                    location = 'index.php';
-                }
-            }
-        })
-
-    });
 
 });
 $(document).ready(function () {
@@ -334,16 +313,14 @@ $(document).ready(function () {
 
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
 
     $('#profile_form').parsley();
 
-    $('#user_profile').change(function(){
+    $('#user_profile').change(function () {
         var extension = $('#user_profile').val().split('.').pop().toLowerCase();
-        if(extension != '')
-        {
-            if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)
-            {
+        if (extension != '') {
+            if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
                 alert("Invalid Image File");
                 $('#user_profile').val('');
                 return false;

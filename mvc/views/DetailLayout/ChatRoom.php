@@ -31,6 +31,7 @@
                         <div class="col col-sm-6">
                             <h3>Chat Room</h3>
                         </div>
+
                         <div class="col col-sm-6 text-right">
                             <a href="privatechat.php" class="btn btn-success btn-sm">Private Chat</a>
                         </div>
@@ -78,7 +79,7 @@
             </form>
         </div>
         <div class="col-lg-4">
-            <input type="hidden" name="login_user_id" id="login_user_id" value="" />
+            <input type="hidden" name="login_user_id" id="login_user_id" value="<?php echo $data['user']['id'] ?>" />
             <div class="mt-3 mb-3 text-center">
                 <img src="<?php echo BASEURL . $data['user']['profile'] ?>" width="150" class="img-fluid rounded-circle img-thumbnail" />
                 <h3 class="mt-2"><?php echo $data['user']['name'] ?></h3>
@@ -117,3 +118,33 @@
         </div>
     </div>
 </div>
+
+<script>
+    //id button logout is logout
+    $('#logout').click(function() {
+
+        //get id user want to logout
+        user_id = $('#login_user_id').val();
+
+        $.ajax({
+
+            url: "http://localhost/do_an/WebSocket/chat/logout",
+            method: "POST",
+            data: {
+                // user_id: user_id,
+                user_id: $('#login_user_id').val(),
+
+                action: 'logout'
+            },
+
+            success: function(data) {
+
+                // if (response.status == 1) {
+                    // conn.close();
+                    window.location.href = 'http://localhost/do_an/WebSocket/';
+                // }
+            }
+        })
+
+    });
+</script>

@@ -133,6 +133,7 @@ class UserModel extends Model
         try {
             //code...
             return $this->setQuery('SELECT * FROM `websocket`.`users` WHERE email=?')->loadRow([$this->getUserEmail()]);
+            //  $this->setQuery('SELECT * FROM `websocket`.`users` WHERE email=?')->loadRow([$this->getUserEmail()]);
         } catch (Exception $e) {
             //throw $th;
             exit($e->getMessage());
@@ -242,6 +243,18 @@ class UserModel extends Model
             // return $this->statement->execute();
             $this->setQuery($query)
             ->save([$this->getUserName(),$this->getPassword(),$this->getProfile(), $this->getUserID()]);
+            return true;
+        } catch (Exception $e) {
+            //throw $th;
+            exit($e->getMessage());
+        }
+    }
+
+    function userLogout(){
+        $query = "UPDATE `websocket`.`users` SET login_status=? WHERE id=?";
+        
+        try {
+            $this->setQuery($query)->save([$this->getUserLoginStatus(),$this->getUserID()]);
             return true;
         } catch (Exception $e) {
             //throw $th;

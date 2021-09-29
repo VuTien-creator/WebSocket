@@ -104,19 +104,39 @@ class UserController extends Controller
         redirect('index');
     }
 
-    function checkEmailRegisterAjax($email)
+    function checkEmailRegisterAjax()
     {
+        if(!isset($_POST['action']) && $_POST['action'] != 'checkEmail'){
+            redirect(BASEURL . 'user/index');
+        }
+
         $this->model('UserModel');
         $userObject = new UserModel;
 
-        $user = $userObject->getUserDataByEmail($email);
+
+        $userObject->setUserEmail($_POST['email']);
+        // $userObject->setUserEmail($email);
+        
+        
+        //get user data
+        $user = $userObject->getUserDataByEmail();
+
+        
         $result = '';
 
         if (!empty($user)) {
             $result = 'Email already exist';
-            // echo 1;
         }
+
+        // var_dump(json_encode($result));
+        // exit;
+        echo $result;
+        return;
+        
+        header('Content-Type: application/json');
+
         return json_encode($result);
+
     }
 
     function verify($code = null)
@@ -182,14 +202,14 @@ class UserController extends Controller
                     // $user->setUserToken(md5(uniqid()));
 
                     if ($user->updateUserLoginData()) {
-                        $_SESSION['user_data'][$userEmail->id] = [
+                        $_SESSION['user_data'] = [
                             'id'    =>  $userEmail->id,
                             'name'  =>  $userEmail->name,
                             'profile'   =>  $userEmail->profile,
                             // 'token' =>  $userEmail->
                         ];
                     }
-                    redirect(BASEURL . 'chat/index/'.$userEmail->id);
+                    redirect(BASEURL . 'chat/index');
                     return true;
                 }
                 $_SESSION['error'] = 'Wrong Email';

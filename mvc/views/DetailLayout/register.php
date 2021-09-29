@@ -1,9 +1,8 @@
-
 <div class="row justify-content-md-center">
     <div class="col col-md-4 mt-5">
-    <?php
-if (!empty($data['error'])) {
-    echo '
+        <?php
+        if (!empty($data['error'])) {
+            echo '
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                       ' . $data['error'] . '
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -11,14 +10,14 @@ if (!empty($data['error'])) {
                       </button>
                     </div>
                     ';
-}
+        }
 
-?>
+        ?>
         <div class="card">
             <div class="card-header">Register</div>
             <div class="card-body">
 
-                <form method="post" action="<?php echo BASEURL;?>user/register" id="register_form">
+                <form method="post" action="<?php echo BASEURL; ?>user/register" id="register_form">
 
                     <div class="form-group">
                         <label>Enter Your Name</label>
@@ -46,5 +45,34 @@ if (!empty($data['error'])) {
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
 
-<script src="<?php echo BASEURL.'public/js/main.js'?>"></script>
+        $('#register_form').parsley();
+
+    });
+
+    $(document).ready(function() {
+        $("#user_email").keyup(function() {
+
+            $.ajax({
+                url: "http://localhost/do_an/WebSocket/user/checkEmailRegisterAjax",
+                method: "POST",
+                data: {
+                    email: $('#user_email').val(),
+
+                    action: 'checkEmail'
+                },
+                success: function(data) {
+
+                    // var pushedData = jQuery.parseJSON(data);
+
+                    $('#message').html(data);
+
+                }
+            })
+
+            
+        });
+    });
+</script>
