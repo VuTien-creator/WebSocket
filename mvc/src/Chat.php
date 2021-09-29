@@ -42,7 +42,7 @@ class Chat implements MessageComponentInterface {
         $userName = $userData->name;
 
         //create time
-        $data['dt'] = date('Y-m-d h:i:s');
+        $data['date'] = date('Y-m-d h:i:s');
 
         foreach ($this->clients as $client) {
             // if ($from !== $client) {

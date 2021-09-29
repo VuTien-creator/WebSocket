@@ -27,7 +27,7 @@ $(document).ready(function () {
             + background_class + "'><b>"
             + data.from + " - </b>" + data.msg
             + "<br /><div class='text-right'><small><i>"
-            + data.dt
+            + data.date
             + "</i></small></div></div></div></div>";
 
         $('#messages_area').append(html_data);

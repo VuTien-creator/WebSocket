@@ -22,6 +22,8 @@ class ChatController extends Controller
 
     function index()
     {
+        // var_dump($_SESSION['user_data']);
+        // exit;
         // $this->idUser = $id;
         // if ($id != $this->idUser) {
         //     header('location:http://localhost/do_an/WebSocket/chat/index/'.$id);
@@ -69,6 +71,8 @@ class ChatController extends Controller
 
     function edit($userId)
     {
+        var_dump($_SESSION['user_data']);
+        exit;
         $user = $this->checkValidUser($userId);
         // var_dump($user);
         // exit;
