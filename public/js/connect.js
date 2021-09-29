@@ -15,7 +15,7 @@ $(document).ready(function () {
 
         if (data.from == 'Me') {
             row_class = 'row justify-content-start';
-            background_class = 'text-dark alert-light';
+            background_class = 'text-dark alert-dark';
         } else {
             row_class = 'row justify-content-end';
             background_class = 'alert-success';

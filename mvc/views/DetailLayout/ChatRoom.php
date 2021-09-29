@@ -6,6 +6,7 @@
 
         <div class="col-lg-8">
             <?php
+
             if (isset($_SESSION['msg'])) {
                 echo '
                                 <div class="alert alert-success">
@@ -118,5 +119,5 @@
         </div>
     </div>
 </div>
-<script src="<?php echo BASEURL;?>public/js/connect.js"></script>
-<script src="<?php echo BASEURL;?>public/js/logout.js"></script>
+<script src="<?php echo BASEURL; ?>public/js/connect.js"></script>
+<script src="<?php echo BASEURL; ?>public/js/logout.js"></script>

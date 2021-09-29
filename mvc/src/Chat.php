@@ -1,7 +1,16 @@
 <?php
 namespace MyApp;
+
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use UserModel;
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+require_once './mvc/core/system/config/config.php';
+require_once './mvc/core/system/libs/functions.php';
+
+require_once dirname(__DIR__).'/core/Model.php';
+require_once dirname(__DIR__).'/models/UserModel.php';
 
 class Chat implements MessageComponentInterface {
     protected $clients;
@@ -22,11 +31,33 @@ class Chat implements MessageComponentInterface {
         echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
             , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
 
+        //convert mess json to array
+        $data = json_decode($msg, true);
+
+        $user = new UserModel;
+        $user->setUserID($data['userId']);
+
+        $userData = $user->getUserDataById();
+
+        $userName = $userData->name;
+
+        //create time
+        $data['dt'] = date('Y-m-d h:i:s');
+
         foreach ($this->clients as $client) {
-            if ($from !== $client) {
-                // The sender is not the receiver, send to each client connected
-                $client->send($msg);
+            // if ($from !== $client) {
+            //     // The sender is not the receiver, send to each client connected
+            //     $client->send($msg);
+            // }
+
+            if($from == $client){
+                $data['from'] = 'Me';
+            }else{
+                $data ['from'] = $userName;
             }
+
+            //send message after format
+            $client->send(json_encode($data));
         }
     }
 
