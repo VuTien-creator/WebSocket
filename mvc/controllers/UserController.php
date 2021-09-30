@@ -68,8 +68,8 @@ class UserController extends Controller
                 $mail->isSMTP();
                 $mail->Host  = 'smtp.gmail.com';
                 $mail->SMTPAuth   = true;
-                $mail->Username   = 'vtu3901@gmail.com';                     //SMTP username
-                $mail->Password   = 'qjvzuldhgicsadfn';
+                $mail->Username   = EM;                     //SMTP username
+                $mail->Password   = PW;
 
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
 

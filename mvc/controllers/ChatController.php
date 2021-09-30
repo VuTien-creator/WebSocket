@@ -23,6 +23,7 @@ class ChatController extends Controller
     function index()
     {
         // var_dump($_SESSION['user_data']);
+        // session_destroy();
         // exit;
         // $this->idUser = $id;
         // if ($id != $this->idUser) {
@@ -71,8 +72,8 @@ class ChatController extends Controller
 
     function edit($userId)
     {
-        var_dump($_SESSION['user_data']);
-        exit;
+        // var_dump($_SESSION['user_data']);
+        // exit;
         $user = $this->checkValidUser($userId);
         // var_dump($user);
         // exit;
